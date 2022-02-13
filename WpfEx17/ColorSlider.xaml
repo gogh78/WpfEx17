@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="WpfEx17.ColorSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfEx17"
+             mc:Ignorable="d" 
+             Name="colorSlider"
+             d:DesignHeight="100" d:DesignWidth="200">
+    <Viewbox>
+        <Grid Width="200" Height="90">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+        <Slider Name="sliderRed" Minimum="0" Maximum="255" 
+                BorderThickness="6" BorderBrush="Red" Background="Black"
+                    Value="{Binding Path=Red, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        <Slider Name="sliderGreen" Minimum="0" Maximum="255" 
+                BorderThickness="6" BorderBrush="Green" Background="Black"
+                    Value="{Binding ElementName=colorSlider, Path=Green}" Grid.Row="1"/>
+        <Slider Name="sliderBlue" Minimum="0" Maximum="255" 
+                BorderThickness="6" BorderBrush="Blue" Background="Black"
+                    Value="{Binding ElementName=colorSlider, Path=Blue}" Grid.Row="2"/>
+            <Rectangle Width="50" 
+                       Stroke="Black" 
+                       StrokeThickness="6"                      
+                       Grid.Column="1" 
+                       Grid.RowSpan="3">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=colorSlider, Path=Color}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+    </Viewbox>
+</UserControl>
